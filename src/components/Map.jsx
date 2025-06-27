@@ -1,5 +1,4 @@
-import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";
-delete L.Icon.Default.prototype._getIconUrl;
+import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
 	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
 	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -56,7 +55,7 @@ function Map() {
 	};
 
 	return (
-		<div className="flex flex-row h-screen">
+		<div className="flex flex-row ">
 			<div className="mr-24 ml-12">
 				<Sidebar
 					lat={coords?.lat}
@@ -89,11 +88,12 @@ function Map() {
 					</div>
 				</div>
 
-				<div className="flex-1 h-full pb-12">
+				<div
+					className="w-full"
+					style={{ height: "700px" }}>
 					<MapContainer
 						center={[7.852514, 123.160065]}
 						zoom={17}
-						className="w-full h-full"
 						style={{ height: "100%", width: "100%" }}>
 						<TileLayer
 							url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
