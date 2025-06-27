@@ -47,7 +47,7 @@ function FeedBack() {
 				open={open}
 				onClose={handleClose}>
 				<div style={modalStyle}>
-					<h2 className="text-lg font-semibold mb-4">Feedback to Government Officials</h2>
+					<h2 className="text-lg font-semibold mb-4">Send Feedback</h2>
 					<form
 						onSubmit={handleSubmit}
 						className="flex flex-col gap-4">

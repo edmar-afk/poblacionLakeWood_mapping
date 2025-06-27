@@ -66,7 +66,7 @@ function Map() {
 				/>
 			</div>
 
-			<div className="flex flex-col flex-1 h-full py-6 px-8 mr-8 space-y-4">
+			<div className="fixed right-0 flex flex-col flex-1 h-full py-6 px-8 mr-8 space-y-4">
 				<div className="grid grid-cols-2 w-full">
 					<div className="w-full">
 						<TopBar
@@ -89,11 +89,11 @@ function Map() {
 				</div>
 
 				<div
-					className="w-full"
-					style={{ height: "700px" }}>
+					className="w-full sticky top-4"
+					style={{ height: "70%" }}>
 					<MapContainer
 						center={[7.852514, 123.160065]}
-						zoom={17}
+						zoom={16}
 						style={{ height: "100%", width: "100%" }}>
 						<TileLayer
 							url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

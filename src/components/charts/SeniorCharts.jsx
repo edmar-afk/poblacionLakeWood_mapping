@@ -50,6 +50,32 @@ function SeniorCharts() {
 			width: "100%",
 			height: "100%",
 			type: "pie",
+			toolbar: {
+				show: true,
+				tools: {
+					download: true,
+					selection: false,
+					zoom: false,
+					zoomin: false,
+					zoomout: false,
+					pan: false,
+					reset: false,
+				},
+				export: {
+					csv: {
+						filename: "Seniors_Chart",
+						columnDelimiter: ",",
+						headerCategory: "Category",
+						headerValue: "Count",
+					},
+					svg: {
+						filename: "Seniors_Chart",
+					},
+					png: {
+						filename: "Seniors_Chart",
+					},
+				},
+			},
 		},
 		theme: {
 			monochrome: {
@@ -63,14 +89,6 @@ function SeniorCharts() {
 				},
 			},
 		},
-		grid: {
-			padding: {
-				top: 0,
-				bottom: 0,
-				left: 0,
-				right: 0,
-			},
-		},
 		dataLabels: {
 			formatter(val, opts) {
 				const name = opts.w.globals.labels[opts.seriesIndex];
@@ -78,7 +96,8 @@ function SeniorCharts() {
 			},
 		},
 		legend: {
-			show: false,
+			show: true,
+			position: "bottom",
 		},
 	};
 
@@ -99,49 +118,29 @@ function SeniorCharts() {
 		<div className="space-y-16 pt-12">
 			<div className="text-center text-4xl font-extrabold text-gray-800">SENIORS</div>
 
-			<div className="flex flex-row justify-center items-center gap-8">
-				<div className="w-72 h-[200px]">
+			<div className="flex flex-col items-center">
+				<div className="w-72 h-[240px]">
 					<Chart
 						options={ageOptions}
 						series={ageCounts}
 						type="pie"
-						height={200}
+						height={240}
 					/>
 				</div>
-				<div className="flex flex-col gap-2">
-					{ageCounts.map((count, i) => (
-						<div
-							key={i}
-							className="flex justify-between w-48 bg-gray-100 px-4 py-2 rounded shadow">
-							<span>{ageLabels[i]}</span>
-							<span>{count}</span>
-						</div>
-					))}
-				</div>
+				<p className="text-center mt-2 text-sm">By Age</p>
 			</div>
-			<p className="text-center -mt-4 text-sm">By Age</p>
 
-			<div className="flex flex-row justify-center items-center gap-8">
-				<div className="w-72 h-[200px]">
+			<div className="flex flex-col items-center">
+				<div className="w-72 h-[240px]">
 					<Chart
 						options={genderOptions}
 						series={[genderCounts.Male, genderCounts.Female]}
 						type="pie"
-						height={200}
+						height={240}
 					/>
 				</div>
-				<div className="flex flex-col gap-2">
-					{genderLabels.map((label, i) => (
-						<div
-							key={label}
-							className="flex justify-between w-48 bg-gray-100 px-4 py-2 rounded shadow">
-							<span>{label}</span>
-							<span>{i === 0 ? genderCounts.Male : genderCounts.Female}</span>
-						</div>
-					))}
-				</div>
+				<p className="text-center mt-2 text-sm">By Gender</p>
 			</div>
-			<p className="text-center -mt-4 text-sm">By Gender</p>
 		</div>
 	);
 }
