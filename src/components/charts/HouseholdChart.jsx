@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";import api from "../../assets/api";function HouseholdChart() {
+import { useState, useEffect } from "react";
+import api from "../../assets/api";
+
+function HouseholdChart() {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
@@ -16,43 +19,56 @@ import { useState, useEffect } from "react";import api from "../../assets/api";f
 	}, []);
 
 	return (
-		<>
-			<p className="text-gray-800 text-center pt-12 text-4xl font-extrabold">HOUSEHOLD</p>
-			<div className="space-y-10">
-				{data.map((household, index) => (
-					<div
-						key={index}
-						className="border p-4 rounded-lg shadow">
-						<h2 className="text-xl font-bold text-gray-800 mb-4 text-center">{household.family_name} Family</h2>
+		<div className="p-8 overflow-auto pt-16 h-screen">
+			
+			{data.map((household, index) => (
+				<div key={index}>
+					<h3 className="text-xl font-bold mb-4 text-gray-700">{household.family_name} Family</h3>
 
-						{household.members && household.members.length > 0 ? (
-							<table className="w-full table-auto border border-gray-300">
-								<thead className="bg-gray-100">
-									<tr>
-										<th className="border px-4 py-2 text-left">Name</th>
-										<th className="border px-4 py-2 text-left">Age</th>
-										<th className="border px-4 py-2 text-left">Role</th>
+					<div className="relative overflow-auto">
+						<div className="overflow-x-auto rounded-lg">
+							<table className="min-w-full bg-white border mb-12">
+								<thead>
+									<tr className="bg-green-700 text-center text-xs md:text-sm font-thin text-white">
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Name</span>
+										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Age</span>
+										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Role</span>
+										</th>
 									</tr>
 								</thead>
 								<tbody>
-									{household.members.map((member, i) => (
-										<tr key={i}>
-											<td className="border px-4 py-2">{member.name}</td>
-											<td className="border px-4 py-2">{member.age}</td>
-											<td className="border px-4 py-2">{member.role}</td>
+									{household.members && household.members.length > 0 ? (
+										household.members.map((member, i) => (
+											<tr
+												key={i}
+												className="border-b text-xs md:text-sm text-center text-gray-800">
+												<td className="p-2 md:p-4">{member.name}</td>
+												<td className="p-2 md:p-4">{member.age}</td>
+												<td className="p-2 md:p-4">{member.role}</td>
+											</tr>
+										))
+									) : (
+										<tr>
+											<td
+												colSpan="4"
+												className="text-center text-gray-500 italic py-4">
+												No family members found.
+											</td>
 										</tr>
-									))}
+									)}
 								</tbody>
 							</table>
-						) : (
-							<p className="text-gray-500 italic text-center">No family members found.</p>
-						)}
+						</div>
 					</div>
-				))}
-			</div>
-		</>
+				</div>
+			))}
+		</div>
 	);
-	
 }
 
 export default HouseholdChart;
