@@ -1,4 +1,5 @@
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import PwdCharts from "./charts/PwdCharts";
 import InfrasChart from "./charts/InfrasChart";
 import SeniorCharts from "./charts/SeniorCharts";
@@ -25,7 +26,6 @@ function Sidebar({ categoryKey }) {
 						<>
 							{" "}
 							<p className="text-gray-800 text-center pt-44 text-4xl font-extrabold">WELCOME TO POBLACION LAKEWOOD</p>
-							<FeedBack />
 						</>
 					)}
 				</div>

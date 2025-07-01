@@ -1,4 +1,14 @@
-import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";delete L.Icon.Default.prototype._getIconUrl;
+import { useState } from "react";
+import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import api from "../assets/api";
+import Sidebar from "./Sidebar";
+import TopBar from "./TopBar";
+import FeedBack from "./FeedBack";
+import { Link } from "react-router-dom";
+
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
 	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
 	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -66,7 +76,7 @@ function Map() {
 				/>
 			</div>
 
-			<div className="fixed right-0 flex flex-col flex-1 h-full py-6 px-8 mr-8 space-y-4 w-[65%]">
+			<div className="fixed right-0 flex flex-col flex-1 h-full pb-8 px-8 mr-8 space-y-4 w-[65%]">
 				<div className="grid grid-cols-2 w-full">
 					<div className="w-full">
 						<TopBar
@@ -151,6 +161,18 @@ function Map() {
 														Age: {item.age} <br />
 														Gender: {item.gender}
 													</>
+												) : activeCategory === "households" ? (
+													<>
+														Family Name: {item.family_name} <br />
+														Members:
+														<ul className="list-disc ml-4">
+															{item.members.map((member, idx) => (
+																<li key={idx}>
+																	{member.name} – {member.age} yrs – {member.role}
+																</li>
+															))}
+														</ul>
+													</>
 												) : (
 													"Unknown category"
 												)}
@@ -159,8 +181,13 @@ function Map() {
 									);
 								})}
 					</MapContainer>
-					<div className="w-44 pt-3">
+					<div className="flex flex-row items-center justify-start pt-3 w-full">
 						<FeedBack />
+						<Link
+							to="/login"
+							className="text-green-800 ml-8 text-xl font-bold">
+							Admin Login
+						</Link>
 					</div>
 				</div>
 			</div>

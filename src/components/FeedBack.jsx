@@ -38,7 +38,7 @@ function FeedBack() {
 	return (
 		<>
 			<button
-				className="mx-auto text-center bg-green-600 text-white p-4 rounded-lg flex"
+				className="text-center bg-green-600 text-white p-4 rounded-lg"
 				onClick={handleOpen}>
 				Send Feedback
 			</button>
