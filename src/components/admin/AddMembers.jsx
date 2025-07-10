@@ -207,10 +207,6 @@ function AddMembers() {
 										<option value="Purok 14">Purok 14</option>
 										<option value="Purok 15">Purok 15</option>
 										<option value="Purok 16">Purok 16</option>
-										<option value="Purok 17">Purok 17</option>
-										<option value="Purok 18">Purok 18</option>
-										<option value="Purok 19">Purok 19</option>
-										<option value="Purok 20">Purok 20</option>
 									</select>
 								</div>
 
