@@ -1,4 +1,5 @@
-import React, { useState } from "react";import { Modal } from "@mui/material";
+import React, { useState } from "react";
+import { Modal } from "@mui/material";
 import api from "../../assets/api";
 
 const style = {
@@ -195,6 +196,21 @@ function AddMembers() {
 										<option value="Purok 3">Purok 3</option>
 										<option value="Purok 4">Purok 4</option>
 										<option value="Purok 5">Purok 5</option>
+										<option value="Purok 6">Purok 6</option>
+										<option value="Purok 7">Purok 7</option>
+										<option value="Purok 8">Purok 8</option>
+										<option value="Purok 9">Purok 9</option>
+										<option value="Purok 10">Purok 10</option>
+										<option value="Purok 11">Purok 11</option>
+										<option value="Purok 12">Purok 12</option>
+										<option value="Purok 13">Purok 13</option>
+										<option value="Purok 14">Purok 14</option>
+										<option value="Purok 15">Purok 15</option>
+										<option value="Purok 16">Purok 16</option>
+										<option value="Purok 17">Purok 17</option>
+										<option value="Purok 18">Purok 18</option>
+										<option value="Purok 19">Purok 19</option>
+										<option value="Purok 20">Purok 20</option>
 									</select>
 								</div>
 
