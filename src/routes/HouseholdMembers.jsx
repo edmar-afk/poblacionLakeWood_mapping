@@ -45,6 +45,10 @@ function HouseholdMembers() {
 			member_name: member.name,
 			age: member.age,
 			role: member.role,
+			purok: member.purok,
+			status: member.status,
+			dob: member.dob,
+			placeBirth: member.placeBirth,
 			show_family_name: idx === 0,
 		}))
 	);
@@ -54,7 +58,11 @@ function HouseholdMembers() {
 			m.family_name.toLowerCase().includes(filterText.toLowerCase()) ||
 			m.member_name.toLowerCase().includes(filterText.toLowerCase()) ||
 			m.role.toLowerCase().includes(filterText.toLowerCase()) ||
-			(m.age + "").includes(filterText)
+			(m.age + "").includes(filterText) ||
+			m.purok.toLowerCase().includes(filterText.toLowerCase()) ||
+			m.status.toLowerCase().includes(filterText.toLowerCase()) ||
+			m.dob.toLowerCase().includes(filterText.toLowerCase()) ||
+			m.placeBirth.toLowerCase().includes(filterText.toLowerCase())
 	);
 
 	const columns = [
@@ -88,6 +96,26 @@ function HouseholdMembers() {
 			sortable: true,
 		},
 		{
+			name: "Purok",
+			selector: (row) => row.purok,
+			sortable: true,
+		},
+		{
+			name: "Status",
+			selector: (row) => row.status,
+			sortable: true,
+		},
+		{
+			name: "Date of Birth",
+			selector: (row) => row.dob,
+			sortable: true,
+		},
+		{
+			name: "Place of Birth",
+			selector: (row) => row.placeBirth,
+			sortable: true,
+		},
+		{
 			name: "Actions",
 			cell: (row) => (
 				<button
@@ -109,7 +137,7 @@ function HouseholdMembers() {
 				<div className="flex flex-col md:flex-row gap-2">
 					<input
 						type="text"
-						placeholder="Search family, name, role, age"
+						placeholder="Search family, name, role, age, etc."
 						className="border border-gray-300 rounded px-3 py-1"
 						value={filterText}
 						onChange={(e) => setFilterText(e.target.value)}

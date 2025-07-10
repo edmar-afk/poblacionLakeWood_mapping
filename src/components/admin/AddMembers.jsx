@@ -15,6 +15,10 @@ function AddMembers() {
 		age: "",
 		role: "",
 		household: "",
+		purok: "",
+		status: "",
+		dob: "",
+		placeBirth: "",
 	});
 	const [error, setError] = useState("");
 
@@ -33,7 +37,16 @@ function AddMembers() {
 	};
 
 	const handleClose = () => {
-		setFormData({ name: "", age: "", role: "", household: "" });
+		setFormData({
+			name: "",
+			age: "",
+			role: "",
+			household: "",
+			purok: "",
+			status: "",
+			dob: "",
+			placeBirth: "",
+		});
 		setError("");
 		setOpen(false);
 	};
@@ -85,15 +98,16 @@ function AddMembers() {
 										Name
 									</label>
 									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 										id="name"
 										type="text"
 										name="name"
 										value={formData.name}
 										onChange={handleChange}
 										placeholder="Name"
+										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
 									/>
 								</div>
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
@@ -101,15 +115,16 @@ function AddMembers() {
 										Age
 									</label>
 									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 										id="age"
 										type="number"
 										name="age"
 										value={formData.age}
 										onChange={handleChange}
 										placeholder="Age"
+										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
 									/>
 								</div>
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
@@ -120,7 +135,7 @@ function AddMembers() {
 										name="role"
 										value={formData.role}
 										onChange={handleChange}
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+										className="shadow border rounded w-full py-2 px-3 text-gray-700">
 										<option
 											value=""
 											disabled>
@@ -132,6 +147,7 @@ function AddMembers() {
 										<option value="Daughter">Daughter</option>
 									</select>
 								</div>
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
@@ -142,7 +158,7 @@ function AddMembers() {
 										name="household"
 										value={formData.household}
 										onChange={handleChange}
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+										className="shadow border rounded w-full py-2 px-3 text-gray-700">
 										<option
 											value=""
 											disabled>
@@ -158,13 +174,91 @@ function AddMembers() {
 									</select>
 								</div>
 
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="purok">
+										Purok
+									</label>
+									<select
+										name="purok"
+										value={formData.purok}
+										onChange={handleChange}
+										className="shadow border rounded w-full py-2 px-3 text-gray-700">
+										<option
+											value=""
+											disabled>
+											Select Purok
+										</option>
+										<option value="Purok 1">Purok 1</option>
+										<option value="Purok 2">Purok 2</option>
+										<option value="Purok 3">Purok 3</option>
+										<option value="Purok 4">Purok 4</option>
+										<option value="Purok 5">Purok 5</option>
+									</select>
+								</div>
+
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="status">
+										Status
+									</label>
+									<select
+										name="status"
+										value={formData.status}
+										onChange={handleChange}
+										className="shadow border rounded w-full py-2 px-3 text-gray-700">
+										<option
+											value=""
+											disabled>
+											Select Status
+										</option>
+										<option value="Single">Single</option>
+										<option value="Married">Married</option>
+									</select>
+								</div>
+
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="dob">
+										Date of Birth
+									</label>
+									<input
+										id="dob"
+										type="date"
+										name="dob"
+										value={formData.dob}
+										onChange={handleChange}
+										className="shadow border rounded w-full py-2 px-3 text-gray-700"
+									/>
+								</div>
+
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="placeBirth">
+										Place of Birth
+									</label>
+									<input
+										id="placeBirth"
+										type="text"
+										name="placeBirth"
+										value={formData.placeBirth}
+										onChange={handleChange}
+										placeholder="e.g. Cebu City"
+										className="shadow border rounded w-full py-2 px-3 text-gray-700"
+									/>
+								</div>
+
 								{error && <p className="text-sm text-red-500 mb-4">{error}</p>}
 
 								<div className="flex items-center justify-between">
 									<button
 										type="button"
 										onClick={handleSubmit}
-										className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+										className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
 										Submit
 									</button>
 									<button
