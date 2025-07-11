@@ -14,12 +14,25 @@ function AddSeniors() {
 		age: "",
 		gender: "",
 		location: "",
+		purok: "",
+		status: "",
+		dob: "",
+		address: "",
 	});
 	const [error, setError] = useState("");
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
-		setFormData({ people: "", age: "", gender: "", location: "" });
+		setFormData({
+			people: "",
+			age: "",
+			gender: "",
+			location: "",
+			purok: "",
+			status: "",
+			dob: "",
+			address: "",
+		});
 		setError("");
 		setOpen(false);
 	};
@@ -65,38 +78,33 @@ function AddSeniors() {
 							<h2 className="text-2xl font-bold text-gray-800 mb-2">Add Seniors</h2>
 							<p className="text-gray-700 mb-6">Fill in the information below</p>
 							<form>
-								<div className="mb-4">
-									<label
-										className="block text-gray-700 font-bold mb-2"
-										htmlFor="people">
-										Full Name
-									</label>
-									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="people"
-										type="text"
-										name="people"
-										value={formData.people}
-										onChange={handleChange}
-										placeholder="Full Name"
-									/>
-								</div>
-								<div className="mb-4">
-									<label
-										className="block text-gray-700 font-bold mb-2"
-										htmlFor="age">
-										Age
-									</label>
-									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="age"
-										type="number"
-										name="age"
-										value={formData.age}
-										onChange={handleChange}
-										placeholder="Age"
-									/>
-								</div>
+								{[
+									{ id: "people", label: "Full Name", type: "text" },
+									{ id: "age", label: "Age", type: "number" },
+									{ id: "location", label: "Location", type: "text" },
+									{ id: "dob", label: "Date of Birth", type: "text" },
+									{ id: "address", label: "Address", type: "text" },
+								].map(({ id, label, type }) => (
+									<div
+										className="mb-4"
+										key={id}>
+										<label
+											className="block text-gray-700 font-bold mb-2"
+											htmlFor={id}>
+											{label}
+										</label>
+										<input
+											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id={id}
+											type={type}
+											name={id}
+											value={formData[id]}
+											onChange={handleChange}
+											placeholder={label}
+										/>
+									</div>
+								))}
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
@@ -117,20 +125,47 @@ function AddSeniors() {
 										<option value="Female">Female</option>
 									</select>
 								</div>
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
-										htmlFor="location">
-										Location
+										htmlFor="purok">
+										Purok
+									</label>
+									<select
+										name="purok"
+										value={formData.purok}
+										onChange={handleChange}
+										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+										<option
+											value=""
+											disabled>
+											Select Purok
+										</option>
+										{[1, 2, 3, 4, 5, 6, 7].map((num) => (
+											<option
+												key={num}
+												value={`Purok ${num}`}>
+												Purok {num}
+											</option>
+										))}
+									</select>
+								</div>
+
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="status">
+										Status
 									</label>
 									<input
 										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="location"
+										id="status"
 										type="text"
-										name="location"
-										value={formData.location}
+										name="status"
+										value={formData.status}
 										onChange={handleChange}
-										placeholder="Location"
+										placeholder="Status"
 									/>
 								</div>
 

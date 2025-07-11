@@ -14,12 +14,23 @@ function AddPwd() {
 		age: "",
 		gender: "",
 		location: "",
+		purok: "",
+		status: "",
+		disability_type: "",
 	});
 	const [error, setError] = useState("");
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
-		setFormData({ people: "", age: "", gender: "", location: "" });
+		setFormData({
+			people: "",
+			age: "",
+			gender: "",
+			location: "",
+			purok: "",
+			status: "",
+			disability_type: "",
+		});
 		setError("");
 		setOpen(false);
 	};
@@ -33,7 +44,11 @@ function AddPwd() {
 
 	const handleSubmit = async () => {
 		try {
-			const response = await api.post("/api/pwds/", formData);
+			const payload = {
+				...formData,
+				description: "sample",
+			};
+			const response = await api.post("/api/pwds/", payload);
 			console.log("Added:", response.data);
 			handleClose();
 		} catch (error) {
@@ -55,9 +70,7 @@ function AddPwd() {
 				onClose={handleClose}
 				sx={style}
 				BackdropProps={{
-					sx: {
-						backgroundColor: "rgba(0, 0, 0, 0.4)",
-					},
+					sx: { backgroundColor: "rgba(0, 0, 0, 0.4)" },
 				}}>
 				<div className="h-screen bg-gray-200 py-20 p-4 md:p-20 lg:p-32 z-[999999] overflow-y-auto w-full">
 					<div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg mx-auto">
@@ -65,38 +78,33 @@ function AddPwd() {
 							<h2 className="text-2xl font-bold text-gray-800 mb-2">Add PWD</h2>
 							<p className="text-gray-700 mb-6">Fill in the information below</p>
 							<form>
-								<div className="mb-4">
-									<label
-										className="block text-gray-700 font-bold mb-2"
-										htmlFor="people">
-										Full Name
-									</label>
-									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="people"
-										type="text"
-										name="people"
-										value={formData.people}
-										onChange={handleChange}
-										placeholder="Full Name"
-									/>
-								</div>
-								<div className="mb-4">
-									<label
-										className="block text-gray-700 font-bold mb-2"
-										htmlFor="age">
-										Age
-									</label>
-									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="age"
-										type="number"
-										name="age"
-										value={formData.age}
-										onChange={handleChange}
-										placeholder="Age"
-									/>
-								</div>
+								{[
+									{ name: "people", label: "Full Name", type: "text" },
+									{ name: "age", label: "Age", type: "number" },
+									{ name: "location", label: "Location", type: "text" },
+									{ name: "status", label: "Status", type: "text" },
+									{ name: "disability_type", label: "Disability Type", type: "text" },
+								].map(({ name, label, type }) => (
+									<div
+										className="mb-4"
+										key={name}>
+										<label
+											className="block text-gray-700 font-bold mb-2"
+											htmlFor={name}>
+											{label}
+										</label>
+										<input
+											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id={name}
+											type={type}
+											name={name}
+											value={formData[name]}
+											onChange={handleChange}
+											placeholder={label}
+										/>
+									</div>
+								))}
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
@@ -117,21 +125,31 @@ function AddPwd() {
 										<option value="Female">Female</option>
 									</select>
 								</div>
+
 								<div className="mb-4">
 									<label
 										className="block text-gray-700 font-bold mb-2"
-										htmlFor="location">
-										Location
+										htmlFor="purok">
+										Purok
 									</label>
-									<input
-										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-										id="location"
-										type="text"
-										name="location"
-										value={formData.location}
+									<select
+										name="purok"
+										value={formData.purok}
 										onChange={handleChange}
-										placeholder="Location"
-									/>
+										className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+										<option
+											value=""
+											disabled>
+											Select Purok
+										</option>
+										<option value="Purok 1">Purok 1</option>
+										<option value="Purok 2">Purok 2</option>
+										<option value="Purok 3">Purok 3</option>
+										<option value="Purok 4">Purok 4</option>
+										<option value="Purok 5">Purok 5</option>
+										<option value="Purok 6">Purok 6</option>
+										<option value="Purok 7">Purok 7</option>
+									</select>
 								</div>
 
 								{error && <p className="text-sm text-red-500 mb-4">{error}</p>}

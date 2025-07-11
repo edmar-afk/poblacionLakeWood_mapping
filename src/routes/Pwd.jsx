@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";import DataTable from "react-data-table-component";
-import api from "../assets/api";
-import AddPwd from "../components/admin/AddPwd";
-
+import React, { useEffect, useState } from "react";import DataTable from "react-data-table-component";import api from "../assets/api";import AddPwd from "../components/admin/AddPwd";
 function Pwd() {
 	const [pwds, setPwds] = useState([]);
 	const [filterText, setFilterText] = useState("");
@@ -40,8 +37,18 @@ function Pwd() {
 			sortable: true,
 		},
 		{
-			name: "Gender",
-			selector: (row) => row.gender,
+			name: "Purok",
+			selector: (row) => row.purok,
+			sortable: true,
+		},
+		{
+			name: "Status",
+			selector: (row) => row.status,
+			sortable: true,
+		},
+		{
+			name: "Disability Type",
+			selector: (row) => row.disability_type,
 			sortable: true,
 		},
 		{

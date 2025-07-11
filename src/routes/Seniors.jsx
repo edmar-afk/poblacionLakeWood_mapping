@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";import DataTable from "react-data-table-component";
+import React, { useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
 import api from "../assets/api";
 import AddSeniors from "../components/admin/AddSeniors";
-
 function Seniors() {
 	const [seniors, setSeniors] = useState([]);
 	const [filterText, setFilterText] = useState("");
@@ -42,6 +42,26 @@ function Seniors() {
 		{
 			name: "Gender",
 			selector: (row) => row.gender,
+			sortable: true,
+		},
+		{
+			name: "Purok",
+			selector: (row) => row.purok,
+			sortable: true,
+		},
+		{
+			name: "Status",
+			selector: (row) => row.status,
+			sortable: true,
+		},
+		{
+			name: "DOB",
+			selector: (row) => row.dob,
+			sortable: true,
+		},
+		{
+			name: "Address",
+			selector: (row) => row.address,
 			sortable: true,
 		},
 		{
