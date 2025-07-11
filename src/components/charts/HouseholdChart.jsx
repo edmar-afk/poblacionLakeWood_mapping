@@ -1,13 +1,4 @@
-import { useState, useEffect } from "react";
-import api from "../../assets/api";
-
-function HouseholdChart() {
-	const [data, setData] = useState([]);
-
-	useEffect(() => {
-		const fetchHousehold = async () => {
-			try {
-				const response = await api.get(`/api/households/`);
+import { useState, useEffect } from "react";import api from "../../assets/api";function HouseholdChart() {	const [data, setData] = useState([]);	useEffect(() => {		const fetchHousehold = async () => {			try {				const response = await api.get(`/api/households/`);
 				setData(response.data);
 			} catch (error) {
 				console.error("Error fetching Households:", error);
@@ -20,7 +11,6 @@ function HouseholdChart() {
 
 	return (
 		<div className="p-8 overflow-auto pt-16 h-screen">
-			
 			{data.map((household, index) => (
 				<div key={index}>
 					<h3 className="text-xl font-bold mb-4 text-gray-700">{household.family_name} Family</h3>
@@ -37,6 +27,18 @@ function HouseholdChart() {
 											<span className="block py-2 px-3 border-r border-gray-300">Age</span>
 										</th>
 										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Purok</span>
+										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Status</span>
+										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">DOB</span>
+										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Place of Birth</span>
+										</th>
+										<th className="p-0">
 											<span className="block py-2 px-3 border-r border-gray-300">Role</span>
 										</th>
 									</tr>
@@ -49,6 +51,10 @@ function HouseholdChart() {
 												className="border-b text-xs md:text-sm text-center text-gray-800">
 												<td className="p-2 md:p-4">{member.name}</td>
 												<td className="p-2 md:p-4">{member.age}</td>
+												<td className="p-2 md:p-4">{member.purok}</td>
+												<td className="p-2 md:p-4">{member.status}</td>
+												<td className="p-2 md:p-4">{member.dob}</td>
+												<td className="p-2 md:p-4">{member.placeBirth}</td>
 												<td className="p-2 md:p-4">{member.role}</td>
 											</tr>
 										))

@@ -1,20 +1,4 @@
-import { useState } from "react";
-import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import api from "../assets/api";
-import Sidebar from "./Sidebar";
-import TopBar from "./TopBar";
-import FeedBack from "./FeedBack";
-import { Link } from "react-router-dom";
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-});
-
+import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";import { Link } from "react-router-dom";delete L.Icon.Default.prototype._getIconUrl;L.Icon.Default.mergeOptions({	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",});
 const redIcon = new L.Icon({
 	iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
 	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
@@ -138,12 +122,19 @@ function Map() {
 												mouseover: (e) => e.target.openPopup(),
 												mouseout: (e) => e.target.closePopup(),
 											}}>
-											<Popup>
+											<Popup maxWidth={900}>
 												{activeCategory === "pwds" ? (
 													<>
 														Name: {item.people} <br />
 														Age: {item.age} <br />
 														Gender: {item.gender}
+														<br />
+														Purok: {item.purok}
+														<br />
+														Status: {item.status}
+														<br />
+														Disability Type: {item.disability_type}
+														<br />
 													</>
 												) : activeCategory === "infras" ? (
 													<>
@@ -159,20 +150,45 @@ function Map() {
 													<>
 														Name: {item.people} <br />
 														Age: {item.age} <br />
-														Gender: {item.gender}
+														Gender: {item.gender} <br />
+														Purok: {item.purok} <br />
+														Status: {item.status} <br />
+														dob: {item.status} <br />
+														address: {item.address} <br />
 													</>
 												) : activeCategory === "households" ? (
-													<>
-														Family Name: {item.family_name} <br />
-														Members:
-														<ul className="list-disc ml-4">
+													<table className="min-w-full border divide-y divide-gray-200 rounded-lg overflow-hidden">
+														<thead className="bg-gray-100">
+															<tr>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Family Name</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Name</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Age</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Role</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Purok</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Status</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">DOB</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+																	Place of Birth
+																</th>
+															</tr>
+														</thead>
+														<tbody className="bg-white divide-y divide-gray-200">
 															{item.members.map((member, idx) => (
-																<li key={idx}>
-																	{member.name} – {member.age} yrs – {member.role}
-																</li>
+																<tr key={idx}>
+																	<td className="px-4 py-2 text-sm text-gray-800">
+																		{idx === 0 ? item.family_name : ""}
+																	</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.name}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.age} yrs</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.role}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.purok}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.status}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.dob}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.placeBirth}</td>
+																</tr>
 															))}
-														</ul>
-													</>
+														</tbody>
+													</table>
 												) : (
 													"Unknown category"
 												)}
