@@ -153,7 +153,7 @@ function Map() {
 														Gender: {item.gender} <br />
 														Purok: {item.purok} <br />
 														Status: {item.status} <br />
-														dob: {item.status} <br />
+														dob: {item.dob} <br />
 														address: {item.address} <br />
 													</>
 												) : activeCategory === "households" ? (
