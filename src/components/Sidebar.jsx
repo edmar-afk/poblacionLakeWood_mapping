@@ -10,7 +10,7 @@ import FeedBack from "./FeedBack";
 function Sidebar({ categoryKey }) {
 	return (
 		<>
-			<div className="block w-[450px] h-screen">
+			<div className="block w-[400px] h-full mb-44">
 				<div className="pt-8 space-y-4">
 					{categoryKey === "pwds" ? (
 						<PwdCharts />

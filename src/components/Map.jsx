@@ -60,8 +60,8 @@ function Map() {
 				/>
 			</div>
 
-			<div className="fixed right-0 flex flex-col flex-1 h-full pb-8 px-8 mr-8 space-y-4 w-[65%]">
-				<div className="grid grid-cols-2 w-full">
+			<div className="fixed right-0 flex flex-col flex-1 h-full pb-8 px-8  space-y-4 w-[75%]">
+				<div className="grid grid-cols-2 w-full -mb-2">
 					<div className="w-full">
 						<TopBar
 							isVisible={true}
@@ -84,7 +84,7 @@ function Map() {
 
 				<div
 					className=""
-					style={{ height: "65%" }}>
+					style={{ height: "80%" }}>
 					<MapContainer
 						center={[7.852514, 123.160065]}
 						zoom={16}

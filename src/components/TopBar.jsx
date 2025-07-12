@@ -25,7 +25,7 @@ function TopBar({ onCategorySelect, activeCategory }) {
 	];
 
 	return (
-		<div className="flex flex-row items-center mx-auto pt-12 flex-wrap justify-center">
+		<div className="flex flex-row items-center mx-auto pt-12 justify-center">
 			{categories.map((cat) => (
 				<button
 					key={cat.key}
