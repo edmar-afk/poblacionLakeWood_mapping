@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { Modal } from "@mui/material";
-import api from "../../assets/api";
-
+import React, { useState } from "react";import { Modal } from "@mui/material";import api from "../../assets/api";
 const style = {
 	display: "flex",
 	alignItems: "center",
@@ -20,6 +17,7 @@ function AddMembers() {
 		status: "",
 		dob: "",
 		placeBirth: "",
+		source_icome: "",
 	});
 	const [error, setError] = useState("");
 
@@ -47,6 +45,7 @@ function AddMembers() {
 			status: "",
 			dob: "",
 			placeBirth: "",
+			source_icome: "",
 		});
 		setError("");
 		setOpen(false);
@@ -260,6 +259,22 @@ function AddMembers() {
 										value={formData.placeBirth}
 										onChange={handleChange}
 										placeholder="e.g. Cebu City"
+										className="shadow border rounded w-full py-2 px-3 text-gray-700"
+									/>
+								</div>
+								<div className="mb-4">
+									<label
+										className="block text-gray-700 font-bold mb-2"
+										htmlFor="source_income">
+										Source of Income
+									</label>
+									<input
+										id="source_income"
+										type="text"
+										name="source_income"
+										value={formData.source_income}
+										onChange={handleChange}
+										placeholder="Driver, Farmer, Teachet, etc."
 										className="shadow border rounded w-full py-2 px-3 text-gray-700"
 									/>
 								</div>

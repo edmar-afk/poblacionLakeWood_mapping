@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";import DataTable from "react-data-table-component";
-import api from "../assets/api";
-import AddMembers from "../components/admin/AddMembers";
-
-function HouseholdMembers() {
+import { useEffect, useState } from "react";import DataTable from "react-data-table-component";import api from "../assets/api";import AddMembers from "../components/admin/AddMembers";function HouseholdMembers() {
 	const [households, setHouseholds] = useState([]);
 	const [filterText, setFilterText] = useState("");
 
@@ -49,6 +45,7 @@ function HouseholdMembers() {
 			status: member.status,
 			dob: member.dob,
 			placeBirth: member.placeBirth,
+			source_income: member.source_income,
 			show_family_name: idx === 0,
 		}))
 	);
@@ -62,7 +59,8 @@ function HouseholdMembers() {
 			m.purok.toLowerCase().includes(filterText.toLowerCase()) ||
 			m.status.toLowerCase().includes(filterText.toLowerCase()) ||
 			m.dob.toLowerCase().includes(filterText.toLowerCase()) ||
-			m.placeBirth.toLowerCase().includes(filterText.toLowerCase())
+			m.placeBirth.toLowerCase().includes(filterText.toLowerCase()) ||
+			m.source_income.toLowerCase().includes(filterText.toLowerCase())
 	);
 
 	const columns = [
@@ -113,6 +111,11 @@ function HouseholdMembers() {
 		{
 			name: "Place of Birth",
 			selector: (row) => row.placeBirth,
+			sortable: true,
+		},
+		{
+			name: "Source of Income",
+			selector: (row) => row.source_income,
 			sortable: true,
 		},
 		{

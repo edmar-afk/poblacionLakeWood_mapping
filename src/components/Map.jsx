@@ -1,7 +1,4 @@
-import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";import { Link } from "react-router-dom";delete L.Icon.Default.prototype._getIconUrl;L.Icon.Default.mergeOptions({	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",});
-const redIcon = new L.Icon({
-	iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+import { useState } from "react";import { MapContainer, TileLayer, useMapEvents, Marker, Popup } from "react-leaflet";import "leaflet/dist/leaflet.css";import L from "leaflet";import api from "../assets/api";import Sidebar from "./Sidebar";import TopBar from "./TopBar";import FeedBack from "./FeedBack";import { Link } from "react-router-dom";delete L.Icon.Default.prototype._getIconUrl;L.Icon.Default.mergeOptions({	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",});const redIcon = new L.Icon({	iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",	shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -60,9 +57,9 @@ function Map() {
 				/>
 			</div>
 
-			<div className="fixed right-0 flex flex-col flex-1 h-full pb-8 px-8  space-y-4 w-[75%]">
+			<div className="fixed right-0 -top-7 flex flex-col flex-1 h-full pb-8 px-8  space-y-4 w-[83%]">
 				<div className="grid grid-cols-2 w-full -mb-2">
-					<div className="w-full">
+					<div className="w-full ml-18">
 						<TopBar
 							isVisible={true}
 							onCategorySelect={handleCategorySelect}
@@ -167,8 +164,12 @@ function Map() {
 																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Purok</th>
 																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Status</th>
 																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">DOB</th>
+
 																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
 																	Place of Birth
+																</th>
+																<th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+																	Source of Income
 																</th>
 															</tr>
 														</thead>
@@ -185,6 +186,7 @@ function Map() {
 																	<td className="px-4 py-2 text-sm text-gray-800">{member.status}</td>
 																	<td className="px-4 py-2 text-sm text-gray-800">{member.dob}</td>
 																	<td className="px-4 py-2 text-sm text-gray-800">{member.placeBirth}</td>
+																	<td className="px-4 py-2 text-sm text-gray-800">{member.source_income}</td>
 																</tr>
 															))}
 														</tbody>

@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";import api from "../../assets/api";function HouseholdChart() {	const [data, setData] = useState([]);	useEffect(() => {		const fetchHousehold = async () => {			try {				const response = await api.get(`/api/households/`);
-				setData(response.data);
-			} catch (error) {
+import { useState, useEffect } from "react";import api from "../../assets/api";function HouseholdChart() {	const [data, setData] = useState([]);	useEffect(() => {		const fetchHousehold = async () => {			try {				const response = await api.get(`/api/households/`);				setData(response.data);			} catch (error) {
 				console.error("Error fetching Households:", error);
 				setData([]);
 			}
@@ -41,6 +39,9 @@ import { useState, useEffect } from "react";import api from "../../assets/api";f
 										<th className="p-0">
 											<span className="block py-2 px-3 border-r border-gray-300">Role</span>
 										</th>
+										<th className="p-0">
+											<span className="block py-2 px-3 border-r border-gray-300">Source of Income</span>
+										</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -56,6 +57,7 @@ import { useState, useEffect } from "react";import api from "../../assets/api";f
 												<td className="p-2 md:p-4">{member.dob}</td>
 												<td className="p-2 md:p-4">{member.placeBirth}</td>
 												<td className="p-2 md:p-4">{member.role}</td>
+												<td className="p-2 md:p-4">{member.source_income}</td>
 											</tr>
 										))
 									) : (
